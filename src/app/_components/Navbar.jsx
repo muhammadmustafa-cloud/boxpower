@@ -3,8 +3,14 @@
 import Image from "next/image"
 import logo from '../../../public/logo.png'
 import { Button } from "@/components/ui/button"
+import { useRouter } from "next/navigation"
+// import SignUpButton from "./SignUpButton"
 
 const Navbar = () => {
+    const router = useRouter();
+    const handlesignUpClick = () => {
+        router.push('/signup');
+    }
     return (
         <div className="flex justify-around items-center py-3">
             <div>
@@ -20,7 +26,8 @@ const Navbar = () => {
                 </div>
                 <div className="flex gap-4">
                     <Button className='px-7 py-2' variant="outline">LOG IN</Button>
-                    <Button className='px-7 py-2'>SIGN UP</Button>
+                    <Button className='px-7 py-2' onClick={handlesignUpClick}>SIGN UP</Button>
+                    {/* <SignUpButton/> */}
 
                 </div>
             </div>

@@ -1,15 +1,81 @@
-import React from 'react'
-import Navbar from '../_components/Navbar'
-import { Button } from '@/components/ui/button'
-import heroImage from '../../../public/hero-image.png'
-import step1 from '../../../public/step-image-1.png'
-import step2 from '../../../public/step-image-2.png'
-import step3 from '../../../public/step-image-3.png'
-import tile1 from '../../../public/tile-image-1.png'
-import tile2 from '../../../public/tile-image-2.png'
-import tile3 from '../../../public/tile-image-3.png'
-import Image from 'next/image'
+import Navbar from '../_components/Navbar';
+import { Button } from '@/components/ui/button';
+import heroImage from '../../../public/hero-image.png';
+import step1 from '../../../public/step-image-1.png';
+import step2 from '../../../public/step-image-2.png';
+import step3 from '../../../public/step-image-3.png';
+import tile1 from '../../../public/tile-image-1.png';
+import tile2 from '../../../public/tile-image-2.png';
+import tile3 from '../../../public/tile-image-3.png';
+import profile6 from '../../../public/profile-image-6.png';
+// import CustomerReviewCard from '../components/CustomerReviewCard'; // Adjust the import path
+import Image from 'next/image';
+import { Carousel, CarouselContent, CarouselItem } from '@/components/ui/carousel';
+import Footer from '../_components/Footer';
+
+
+const CustomerReviewCard = ({ name, designation, review, rating }) => {
+  return (
+    <div className="flex flex-col items-center p-6 rounded-lg shadow-lg">
+      <Image className="rounded-full w-24 h-24 mb-4" src={profile6} alt={`${name}'s profile`} />
+      <h3 className="text-xl font-semibold">{name}</h3>
+      <p className="text-sm text-gray-500">{designation}</p>
+      <p className="text-center mt-4 text-gray-700">{review}</p>
+      <div className="flex mt-4">
+        {Array.from({ length: 5 }).map((_, index) => (
+          <svg
+            key={index}
+            className={`w-6 h-6 ${index < rating ? 'text-yellow-400' : 'text-gray-300'}`}
+            fill="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path d="M12 .288l2.833 8.718H24l-6.917 5.034 2.666 8.718L12 17.733 4.251 22.758 6.917 14.04 0 9.006h9.167L12 .288z" />
+          </svg>
+        ))}
+      </div>
+    </div>
+  );
+};
+
+
+
 const page = () => {
+  const reviews = [
+    {
+      name: 'Pierre Cox',
+      designation: 'Chief Solutions Designer',
+      review: 'EASI helped me understand the energy consumption of my facility much better and now I know the power-hungry appliances.',
+      rating: 5,
+    },
+    {
+      name: 'Kamari Rowe',
+      designation: 'Telecom Operations Director',
+      review: 'Its the only tool in the market that helps in modelling, deisgning and automating the energy audit process at a great price.',
+      rating: 5,
+    },
+    {
+      name: 'Averi Wells',
+      designation: 'EV Charging Analyst',
+      review: 'The simplicity and the visuals of the energy audit report helped me convince my manager to install a BoxPower solar microgrid for our facility.',
+      rating: 5,
+    },
+    {
+      name: 'John Doe',
+      designation: 'Energy Consultant',
+      review: 'The EASI tool has significantly improved our system design process and financial analysis.',
+      rating: 5,
+    },
+    {
+      name: 'John Doe',
+      designation: 'Energy Consultant',
+      review: 'The EASI tool has significantly improved our system design process and financial analysis.',
+      rating: 5,
+    },
+    // Add more reviews as needed
+  ];
+
+
+
   return (
     <>
       <Navbar />
@@ -82,8 +148,29 @@ const page = () => {
         </div>
         <Button className="mt-10" variant="outline">Check Out User Manual</Button>
       </div>
-    </>
-  )
-}
+      {/* <CarouselSpacing/> */}
+      <div className='w-[80%] mx-auto my-28'>
+        <h1 className='text-4xl text-heading font-medium'>Customer Reviews</h1>
+        <p className='text-paraText text-sm font-normal flex leading-7 w-[50%] text-center'>See what our customers have to say about their experiences with the EASI tool.</p>
+        <Carousel>
+          <CarouselContent className="flex justify-around">
+            {reviews.map((review, index) => (
+              <CarouselItem key={index} className="basis-1/3 p-2">
+                <CustomerReviewCard {...review} />
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+        </Carousel>
+      </div>
 
-export default page
+      <div className='flex flex-col items-center justify-center bg-custom-gradient py-24 my-10 gap-7'>
+            <h1 className='text-white font-semibold text-4xl'>Configure a microgrid solution to your exact needs!</h1>
+            <Button variant="secondary" className="px-8 py-6 text-base uppercase">Get Started Now</Button>
+      </div>
+
+      <Footer/>
+    </>
+  );
+};
+
+export default page;

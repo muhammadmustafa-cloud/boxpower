@@ -18,6 +18,9 @@ module.exports = {
       },
     },
     extend: {
+      backgroundImage: {
+        'custom-gradient': 'linear-gradient(-260deg, #ed683c 0%, #fee930 100%)',
+      },
       colors: {
         heading: "#141E46",
         paraText: "#5F6F78",
@@ -33,11 +36,11 @@ module.exports = {
           foreground: "hsl(var(--primary-foreground))",
         },
         secondary: {
-          DEFAULT: "hsl(var(--secondary))",
+          DEFAULT: "#ffffff",
           foreground: "hsl(var(--secondary-foreground))",
         },
         destructive: {
-          DEFAULT: "hsl(var(--destructive))",
+          DEFAULT: "#000000",
           foreground: "hsl(var(--destructive-foreground))",
         },
         muted: {

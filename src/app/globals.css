@@ -73,3 +73,11 @@
     @apply bg-background text-foreground;
   }
 }
+
+.createProjectIcon {
+  transition: color 0.3s ease;
+}
+
+.createProjectIcon:hover {
+  color: #ed683c;
+}
